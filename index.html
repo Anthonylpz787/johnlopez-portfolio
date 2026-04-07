@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Lopez — Engineering Portfolio</title>
+
+  <!-- V5: Custom Favicon (circuit node SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='10' fill='%233b82f6'/%3E%3Cline x1='32' y1='22' x2='32' y2='4' stroke='%233b82f6' stroke-width='3'/%3E%3Cline x1='22' y1='32' x2='4' y2='32' stroke='%233b82f6' stroke-width='3'/%3E%3Cline x1='42' y1='32' x2='60' y2='32' stroke='%233b82f6' stroke-width='3'/%3E%3Cline x1='32' y1='42' x2='32' y2='60' stroke='%233b82f6' stroke-width='3'/%3E%3Ccircle cx='32' cy='4' r='3' fill='%233b82f6'/%3E%3Ccircle cx='4' cy='32' r='3' fill='%233b82f6'/%3E%3Ccircle cx='60' cy='32' r='3' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='60' r='3' fill='%233b82f6'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===================== LOADER ===================== -->
+<div class="loader">
+  <svg class="loader-circuit" viewBox="0 0 120 80">
+    <circle class="node" cx="20" cy="40" r="5" />
+    <circle class="node" cx="55" cy="40" r="5" />
+    <circle class="node" cx="90" cy="30" r="4" />
+    <circle class="node" cx="90" cy="70" r="4" />
+    <line class="trace" x1="20" y1="40" x2="55" y2="40" />
+    <line class="trace" x1="55" y1="40" x2="90" y2="30" />
+    <line class="trace" x1="55" y1="40" x2="90" y2="70" />
+  </svg>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 40 40">
+        <circle class="logo-node" cx="8"  cy="20" r="3" />
+        <circle class="logo-node" cx="20" cy="20" r="4" />
+        <circle class="logo-node" cx="34" cy="10" r="3" />
+        <circle class="logo-node" cx="34" cy="30" r="3" />
+        <line class="logo-line" x1="8" y1="20" x2="20" y2="20" />
+        <line class="logo-line" x1="20" y1="20" x2="34" y2="10" />
+        <line class="logo-line" x1="20" y1="20" x2="34" y2="30" />
+      </svg>
+      JL
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <canvas class="hero-canvas" id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-label">Electrical Engineering</p>
+    <h1 class="hero-title">
+      Hi, I'm <span class="accent" id="typing-name" data-name="John Lopez"></span><span class="typing-cursor"></span>
+    </h1>
+    <p class="hero-sub">Engineering student at Michigan Technological University building hardware &amp; software solutions.</p>
+    <div class="hero-chips">
+      <span class="chip">Circuit Design</span>
+      <span class="chip">Embedded Systems</span>
+      <span class="chip">MATLAB</span>
+      <span class="chip">CAD Modeling</span>
+      <span class="chip">Web Dev</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="social-btns">
+      <a href="#" class="social-btn" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.3c0 5.21 3.44 9.64 8.2 11.21.6.11.82-.26.82-.57v-2.17c-3.34.72-4.04-1.42-4.04-1.42-.55-1.37-1.33-1.74-1.33-1.74-1.09-.73.08-.72.08-.72 1.2.09 1.84 1.22 1.84 1.22 1.07 1.8 2.8 1.28 3.49.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.84 0-1.29.47-2.34 1.24-3.17-.13-.3-.54-1.5.12-3.13 0 0 1-.32 3.3 1.21a11.5 11.5 0 0 1 6.01 0c2.3-1.53 3.3-1.21 3.3-1.21.66 1.63.25 2.83.12 3.13.77.83 1.24 1.88 1.24 3.17 0 4.54-2.81 5.53-5.48 5.83.43.37.82 1.1.82 2.22v3.29c0 .31.21.69.83.57C20.57 21.93 24 17.51 24 12.3 24 5.78 18.63.5 12 .5z"/></svg>
+      </a>
+      <a href="#" class="social-btn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.2 0 22.23 0z"/></svg>
+      </a>
+      <a href="mailto:placeholder@mtu.edu" class="social-btn" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- V5: Section Divider — Wave -->
+<div class="section-divider">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path class="divider-wave" d="M0,30 C150,10 350,50 500,30 C650,10 850,50 1000,30 C1050,22 1150,38 1200,30" />
+    <path class="divider-wave d2" d="M0,35 C200,55 400,15 600,35 C800,55 1000,15 1200,35" />
+  </svg>
+</div>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section" id="about">
+  <p class="section-label fade-in">01 — About</p>
+  <h2 class="section-title fade-in">About Me</h2>
+  <p class="section-desc fade-in">A snapshot of who I am and what drives my engineering journey.</p>
+  <div class="about-grid">
+    <div class="about-text fade-in stagger-1">
+      <p>I'm an <strong>Electrical Engineering</strong> undergraduate at <strong>Michigan Technological University</strong>, passionate about bridging hardware and software to build practical solutions.</p>
+      <p>My experience spans <strong>embedded systems</strong>, <strong>circuit design</strong>, <strong>MATLAB data visualization</strong>, and <strong>CAD modeling</strong>. I thrive on hands-on projects that push me to learn new tools and frameworks.</p>
+      <p>Outside the lab, I'm exploring <strong>web development</strong> to create personal tools and building a custom <strong>note-taking app</strong> from scratch.</p>
+    </div>
+    <div class="about-stats fade-in stagger-2">
+      <div class="stat-card"><div class="stat-number" data-count="8">0+</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-card"><div class="stat-number" data-count="5">0+</div><div class="stat-label">Technologies</div></div>
+      <div class="stat-card"><div class="stat-number" data-count="3">0+</div><div class="stat-label">Years of Study</div></div>
+      <div class="stat-card"><div class="stat-number" data-count="2">0+</div><div class="stat-label">Awards</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- V5: Section Divider — Circuit Trace -->
+<div class="section-divider">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <line class="divider-circuit-line" x1="0" y1="30" x2="350" y2="30" />
+    <line class="divider-circuit-line" x1="350" y1="30" x2="420" y2="12" />
+    <line class="divider-circuit-line" x1="420" y1="12" x2="700" y2="12" />
+    <line class="divider-circuit-line" x1="350" y1="30" x2="420" y2="48" />
+    <line class="divider-circuit-line" x1="420" y1="48" x2="700" y2="48" />
+    <line class="divider-circuit-line" x1="700" y1="12" x2="780" y2="30" />
+    <line class="divider-circuit-line" x1="700" y1="48" x2="780" y2="30" />
+    <line class="divider-circuit-line" x1="780" y1="30" x2="1200" y2="30" />
+    <circle class="divider-circuit-node" cx="350" cy="30" r="4" />
+    <circle class="divider-circuit-node" cx="420" cy="12" r="3" />
+    <circle class="divider-circuit-node" cx="420" cy="48" r="3" />
+    <circle class="divider-circuit-node" cx="700" cy="12" r="3" />
+    <circle class="divider-circuit-node" cx="700" cy="48" r="3" />
+    <circle class="divider-circuit-node" cx="780" cy="30" r="4" />
+  </svg>
+</div>
+
+<!-- ===================== SKILLS ===================== -->
+<section class="section-alt" id="skills">
+  <div class="section section-inner">
+    <p class="section-label fade-in">02 — Skills</p>
+    <h2 class="section-title fade-in">Technical Skills</h2>
+    <p class="section-desc fade-in">Core competencies I've developed through coursework and projects.</p>
+    <div class="skills-grid">
+      <div class="skill-card fade-in stagger-1">
+        <div class="skill-icon">⚡</div>
+        <h3>Hardware Design</h3>
+        <p>Circuit design, PCB layout, soldering, oscilloscope debugging</p>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+        <div class="skill-bar-label"><span>Proficiency</span><span>90%</span></div>
+      </div>
+      <div class="skill-card fade-in stagger-2">
+        <div class="skill-icon">💻</div>
+        <h3>Software Development</h3>
+        <p>Python, MATLAB, C/C++, HTML/CSS/JS, Git</p>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78%"></div></div>
+        <div class="skill-bar-label"><span>Proficiency</span><span>78%</span></div>
+      </div>
+      <div class="skill-card fade-in stagger-3">
+        <div class="skill-icon">🎨</div>
+        <h3>CAD &amp; Design</h3>
+        <p>SolidWorks, Fusion 360, technical drawing, 3D printing</p>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82%"></div></div>
+        <div class="skill-bar-label"><span>Proficiency</span><span>82%</span></div>
+      </div>
+      <div class="skill-card fade-in stagger-4">
+        <div class="skill-icon">🔧</div>
+        <h3>Embedded Systems</h3>
+        <p>Arduino, ESP32, sensor integration, motor drivers</p>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div>
+        <div class="skill-bar-label"><span>Proficiency</span><span>85%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- V5: Section Divider — Wave (variant) -->
+<div class="section-divider">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path class="divider-wave" d="M0,40 C200,15 300,55 500,30 C700,5 900,55 1200,25" />
+    <path class="divider-wave d2" d="M0,25 C300,50 500,10 700,35 C900,60 1100,20 1200,40" />
+  </svg>
+</div>
+
+<!-- ===================== PROJECTS ===================== -->
+<section class="section" id="projects">
+  <p class="section-label fade-in">03 — Projects</p>
+  <h2 class="section-title fade-in">Featured Projects</h2>
+  <p class="section-desc fade-in">A selection of hands-on work across hardware, software, and design.</p>
+
+  <div class="filter-bar fade-in">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="hardware">Hardware</button>
+    <button class="filter-btn" data-filter="software">Software</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card fade-in stagger-1" data-category="hardware">
+      <div class="project-thumb">⚡</div>
+      <div class="project-info">
+        <h3>ESP32 Motor Control System</h3>
+        <p>Grouped DC motor control with L293D driver, serial command interface, and safety interlocks.</p>
+        <div class="project-tags"><span>ESP32</span><span>C++</span><span>L293D</span></div>
+        <button class="project-link" data-modal="modal-esp32">View Details →</button>
+      </div>
+    </div>
+    <div class="project-card fade-in stagger-2" data-category="software">
+      <div class="project-thumb">📊</div>
+      <div class="project-info">
+        <h3>Solar Panel Data Visualization</h3>
+        <p>MATLAB scripts for processing and visualizing solar panel efficiency data with interactive plots.</p>
+        <div class="project-tags"><span>MATLAB</span><span>Data Viz</span><span>Energy</span></div>
+        <button class="project-link" data-modal="modal-solar">View Details →</button>
+      </div>
+    </div>
+    <div class="project-card fade-in stagger-3" data-category="design">
+      <div class="project-thumb">📐</div>
+      <div class="project-info">
+        <h3>Custom Enclosure Design</h3>
+        <p>3D-printed enclosure modeled in SolidWorks for a sensor array, with snap-fit assembly.</p>
+        <div class="project-tags"><span>SolidWorks</span><span>3D Print</span><span>CAD</span></div>
+        <button class="project-link" data-modal="modal-cad">View Details →</button>
+      </div>
+    </div>
+    <div class="project-card fade-in stagger-4" data-category="software">
+      <div class="project-thumb">📝</div>
+      <div class="project-info">
+        <h3>Custom Note-Taking App</h3>
+        <p>A personal note-taking web app with markdown support, dark mode, and local storage persistence.</p>
+        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <button class="project-link" data-modal="modal-notes">View Details →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECT MODALS ===== -->
+<div class="modal-backdrop" id="modal-esp32">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h2>ESP32 Motor Control System</h2>
+    <p class="modal-category">Hardware / Embedded</p>
+    <p>Designed and wired an ESP32-C6 microcontroller with an L293D motor driver IC to independently control four DC motors in grouped configurations.</p>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>Serial command interface for real-time motor control</li>
+      <li>Grouped motor pairing with independent speed/direction</li>
+      <li>Hardware safety interlocks and current limiting</li>
+      <li>Modular wiring harness for rapid prototyping</li>
+    </ul>
+    <p><strong>Tech Stack:</strong> ESP32-C6, L293D, C++, Arduino IDE</p>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-solar">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h2>Solar Panel Data Visualization</h2>
+    <p class="modal-category">Software / Data</p>
+    <p>Built MATLAB scripts to import, clean, and visualize solar panel output data across varying weather conditions and times of day.</p>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>Multi-plot dashboard with voltage, current, and power curves</li>
+      <li>Statistical analysis of efficiency across conditions</li>
+      <li>Clean, minimal chart styling optimized for reports</li>
+      <li>Automated CSV import and outlier detection</li>
+    </ul>
+    <p><strong>Tech Stack:</strong> MATLAB, Excel, Data Processing</p>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-cad">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h2>Custom Enclosure Design</h2>
+    <p class="modal-category">Design / Mechanical</p>
+    <p>Modeled a precision-fit enclosure in SolidWorks for a multi-sensor array, designed for FDM 3D printing with snap-fit joints and ventilation slots.</p>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>Parametric design for rapid dimensional changes</li>
+      <li>Snap-fit assembly — no fasteners required</li>
+      <li>Integrated cable routing channels</li>
+      <li>Ventilation slots for thermal management</li>
+    </ul>
+    <p><strong>Tech Stack:</strong> SolidWorks, Cura, FDM Printing</p>
+  </div>
+</div>
+<div class="modal-backdrop" id="modal-notes">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h2>Custom Note-Taking App</h2>
+    <p class="modal-category">Software / Web</p>
+    <p>A lightweight, browser-based note-taking app built from scratch with vanilla HTML, CSS, and JavaScript. Inspired by Obsidian and Word.</p>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>Markdown rendering with live preview</li>
+      <li>Dark and light theme toggle</li>
+      <li>Local storage persistence — no server needed</li>
+      <li>Folder-based note organization</li>
+    </ul>
+    <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, LocalStorage</p>
+  </div>
+</div>
+
+<!-- V5: Section Divider — Circuit Trace (variant) -->
+<div class="section-divider">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <line class="divider-circuit-line" x1="0" y1="30" x2="200" y2="30" />
+    <line class="divider-circuit-line" x1="200" y1="30" x2="280" y2="15" />
+    <line class="divider-circuit-line" x1="280" y1="15" x2="550" y2="15" />
+    <line class="divider-circuit-line" x1="550" y1="15" x2="630" y2="30" />
+    <line class="divider-circuit-line" x1="200" y1="30" x2="280" y2="45" />
+    <line class="divider-circuit-line" x1="280" y1="45" x2="550" y2="45" />
+    <line class="divider-circuit-line" x1="550" y1="45" x2="630" y2="30" />
+    <line class="divider-circuit-line" x1="630" y1="30" x2="1200" y2="30" />
+    <circle class="divider-circuit-node" cx="200" cy="30" r="4" />
+    <circle class="divider-circuit-node" cx="280" cy="15" r="3" />
+    <circle class="divider-circuit-node" cx="280" cy="45" r="3" />
+    <circle class="divider-circuit-node" cx="550" cy="15" r="3" />
+    <circle class="divider-circuit-node" cx="550" cy="45" r="3" />
+    <circle class="divider-circuit-node" cx="630" cy="30" r="4" />
+  </svg>
+</div>
+
+<!-- ===================== EDUCATION ===================== -->
+<section class="section-alt" id="education">
+  <div class="section section-inner">
+    <p class="section-label fade-in">04 — Education</p>
+    <h2 class="section-title fade-in">Education</h2>
+    <p class="section-desc fade-in">My academic path and milestones.</p>
+    <div class="timeline">
+      <div class="timeline-item fade-in stagger-1">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2023 — Present</p>
+        <h3>B.S. Electrical Engineering</h3>
+        <h4>Michigan Technological University</h4>
+        <p>Focused on circuits, embedded systems, and signal processing. Active in engineering clubs and hands-on project teams.</p>
+      </div>
+      <div class="timeline-item fade-in stagger-2">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2022</p>
+        <h3>Relevant Coursework</h3>
+        <h4>Circuits I &amp; II, Digital Logic, Intro to Programming</h4>
+        <p>Built a strong foundation in analog/digital circuits, Boolean logic, and C programming.</p>
+      </div>
+      <div class="timeline-item fade-in stagger-3">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2021</p>
+        <h3>High School Diploma</h3>
+        <h4>Placeholder High School</h4>
+        <p>Graduated with honors. Completed AP Physics, AP Calculus, and introductory engineering courses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- V5: Section Divider — Wave -->
+<div class="section-divider">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path class="divider-wave" d="M0,20 C100,45 250,10 400,30 C550,50 700,15 850,35 C1000,55 1100,20 1200,30" />
+    <path class="divider-wave d2" d="M0,40 C150,15 350,50 550,28 C750,6 950,50 1200,25" />
+  </svg>
+</div>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section" id="contact">
+  <p class="section-label fade-in">05 — Contact</p>
+  <h2 class="section-title fade-in">Get in Touch</h2>
+  <p class="section-desc fade-in">Have a question or want to collaborate? Reach out below.</p>
+  <div class="contact-grid">
+    <div class="fade-in stagger-1">
+      <div class="contact-info-card">
+        <div class="contact-icon">📧</div>
+        <div><div class="label">Email</div><div class="value">placeholder@mtu.edu</div></div>
+      </div>
+      <div class="contact-info-card">
+        <div class="contact-icon">📍</div>
+        <div><div class="label">Location</div><div class="value">Houghton, MI</div></div>
+      </div>
+      <div class="contact-info-card">
+        <div class="contact-icon">🎓</div>
+        <div><div class="label">University</div><div class="value">Michigan Tech</div></div>
+      </div>
+    </div>
+    <form class="contact-form fade-in stagger-2" id="contact-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <p>&copy; 2026 John Lopez. Built with HTML, CSS &amp; JavaScript.</p>
+</footer>
+
+<!-- ===================== BACK TO TOP ===================== -->
+<button class="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ===================== KONAMI HINT ===================== -->
+<div id="konami-hint" class="konami-hint">Keep going… ↑↑↓↓←→←→BA</div>
+
+<!-- ===================== WALLPAPER OVERLAY ===================== -->
+<div id="wallpaper-overlay" class="wallpaper-overlay">
+  <button id="wp-close" class="wp-close">&times;</button>
+  <div class="wp-hero">
+    <div>
+      <h1>John Lopez</h1>
+      <p>Electrical Engineering · Michigan Tech</p>
+    </div>
+  </div>
+  <div class="wp-stats">
+    <div class="wp-stat"><div class="wp-stat-num">8+</div><div class="wp-stat-label">Projects</div></div>
+    <div class="wp-stat"><div class="wp-stat-num">5+</div><div class="wp-stat-label">Technologies</div></div>
+    <div class="wp-stat"><div class="wp-stat-num">3+</div><div class="wp-stat-label">Years</div></div>
+    <div class="wp-stat"><div class="wp-stat-num">2+</div><div class="wp-stat-label">Awards</div></div>
+  </div>
+  <div class="wp-section" style="overflow:hidden;">
+    <h2>Skills</h2>
+    <div class="wp-skills-track">
+      <span class="wp-skill-pill">Circuit Design</span>
+      <span class="wp-skill-pill">Embedded Systems</span>
+      <span class="wp-skill-pill">MATLAB</span>
+      <span class="wp-skill-pill">Python</span>
+      <span class="wp-skill-pill">SolidWorks</span>
+      <span class="wp-skill-pill">Arduino</span>
+      <span class="wp-skill-pill">ESP32</span>
+      <span class="wp-skill-pill">HTML/CSS</span>
+      <span class="wp-skill-pill">JavaScript</span>
+      <span class="wp-skill-pill">Git</span>
+      <!-- duplicate for seamless loop -->
+      <span class="wp-skill-pill">Circuit Design</span>
+      <span class="wp-skill-pill">Embedded Systems</span>
+      <span class="wp-skill-pill">MATLAB</span>
+      <span class="wp-skill-pill">Python</span>
+      <span class="wp-skill-pill">SolidWorks</span>
+      <span class="wp-skill-pill">Arduino</span>
+      <span class="wp-skill-pill">ESP32</span>
+      <span class="wp-skill-pill">HTML/CSS</span>
+      <span class="wp-skill-pill">JavaScript</span>
+      <span class="wp-skill-pill">Git</span>
+    </div>
+  </div>
+  <div class="wp-section">
+    <h2>Projects</h2>
+    <div class="wp-projects">
+      <div class="wp-card"><h3>ESP32 Motor Control</h3><p>Grouped DC motor system with safety interlocks</p></div>
+      <div class="wp-card"><h3>Solar Data Viz</h3><p>MATLAB dashboard for solar panel analytics</p></div>
+      <div class="wp-card"><h3>CAD Enclosure</h3><p>3D-printed snap-fit sensor housing</p></div>
+      <div class="wp-card"><h3>Note-Taking App</h3><p>Browser-based markdown note app</p></div>
+    </div>
+  </div>
+  <div class="wp-footer">Portfolio Overview · John Lopez · 2026</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
