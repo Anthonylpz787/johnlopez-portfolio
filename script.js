@@ -20,6 +20,71 @@ function applyTheme() {
   updateParticleColors();
 }
 applyTheme();
+/* ---------- Wallpaper: start animations ---------- */
+function initWallpaper() {
+  const overlay = document.getElementById('wallpaper-overlay');
+  if (!overlay) return;
+
+  const nums  = overlay.querySelectorAll('.wp-stat-num');
+  const rings = overlay.querySelectorAll('.wp-ring-fill');
+  const CIRCUM = 276.46;
+
+  setTimeout(() => {
+    nums.forEach((el, i) => {
+      const target = parseInt(el.dataset.target) || 0;
+      let cur = 0;
+      const step = target / 40;
+
+      const id = setInterval(() => {
+        cur += step;
+        if (cur >= target) {
+          cur = target;
+          clearInterval(id);
+          el.textContent = target + '+';
+          el.style.textShadow = '0 0 22px rgba(59,130,246,.85)';
+          setTimeout(() => (el.style.textShadow = ''), 700);
+        } else {
+          el.textContent = Math.floor(cur) + '+';
+        }
+      }, 50);
+
+      if (rings[i]) {
+        const offset = CIRCUM * (1 - target / 10);
+        rings[i].style.strokeDashoffset = offset;
+      }
+    });
+  }, 700);
+
+  overlay._parallax = (e) => {
+    const x = (e.clientX / window.innerWidth  - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    const bg = overlay.querySelector('.wp-bg');
+    if (bg) bg.style.transform = `translate(${x * 28}px, ${y * 28}px)`;
+  };
+  overlay.addEventListener('mousemove', overlay._parallax);
+}
+
+/* ---------- Wallpaper: reset for next open ---------- */
+function resetWallpaper() {
+  const overlay = document.getElementById('wallpaper-overlay');
+  if (!overlay) return;
+
+  overlay.querySelectorAll('.wp-stat-num').forEach(el => {
+    el.textContent = '0';
+    el.style.textShadow = '';
+  });
+  overlay.querySelectorAll('.wp-ring-fill').forEach(r => {
+    r.style.strokeDashoffset = '276.46';
+  });
+  const bg = overlay.querySelector('.wp-bg');
+  if (bg) bg.style.transform = '';
+
+  if (overlay._parallax) {
+    overlay.removeEventListener('mousemove', overlay._parallax);
+    overlay._parallax = null;
+  }
+}
+
 
 /* ================================================================
    DOMContentLoaded — everything else
@@ -295,22 +360,30 @@ document.addEventListener('DOMContentLoaded', () => {
     } else { konamiIdx = 0; }
   });
 
-  /* ====== WALLPAPER MODE ====== */
+    /* ====== WALLPAPER MODE ====== */
   const wpOverlay = document.getElementById('wallpaper-overlay');
+
   function openWallpaper() {
     if (!wpOverlay) return;
     wpOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      wpOverlay.querySelectorAll('.wp-card').forEach((c, i) => {
-        setTimeout(() => c.classList.add('visible'), i * 150);
-      });
-    }, 400);
+    initWallpaper();
   }
-  document.getElementById('wp-close')?.addEventListener('click', () => {
-    wpOverlay?.classList.remove('active');
+
+  function closeWallpaper() {
+    if (!wpOverlay) return;
+    wpOverlay.classList.remove('active');
     document.body.style.overflow = '';
-    wpOverlay?.querySelectorAll('.wp-card').forEach(c => c.classList.remove('visible'));
+    resetWallpaper();
+  }
+
+  document.getElementById('wp-close')?.addEventListener('click', closeWallpaper);
+
+  // ESC key to close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && wpOverlay?.classList.contains('active')) {
+      closeWallpaper();
+    }
   });
 
   /* ====== V5: 3D CARD TILT EFFECT ====== */
